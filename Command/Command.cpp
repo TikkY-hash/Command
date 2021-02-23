@@ -1,14 +1,81 @@
-﻿
+﻿#include <iostream>
+#include <cmath>
+#define f(x) exp(-x*-x)
 
-#include <iostream>
 using namespace std;
+
+
+double Rectangles(double a,double b,int n);
+double Trapezium(double a, double b, int c);
+double Simpson(double a, double b, int c);
+
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");
-    cout << "Poliak the best! Poliak my love <3!";
-    special for Katya
-     int x = 100;
+	setlocale(LC_ALL, "Russian");
+link:int chooseRepit, choosemethod;
+	double a, b, sum;
+	int n;
+	cout << " Enter your start data of functions = " ;
+	cin >> a;
+	cout << "  Enter your end data of functions = " ;
+	cin >> b;
+	cout << " Enter your coefficient = " ;
+	cin >> n;
+
+	cout << "	IntegrationMethods \n" << endl;
+	cout << " 1) Method of Rectangles \n";
+	cout << " 2) Method of Trapezium  \n";
+	cout << " 3) Method of Simpson \n" << endl;
+
+uncorrect: cout << " Your chose: ";
+	cin >> choosemethod;
+	cout << endl << endl;
+
+	switch (choosemethod) {
+
+	case 1 : 
+		cout << "	Method of Rectangles\n" << endl << endl;
+		sum = Rectangles(a, b, n);
+		cout << sum << endl;
+		break;
+
+	case 2 : 
+		cout << "	Method of Trapezium\n" << endl << endl;
+		break;
+
+	case 3:
+		cout << "	Method of Simpson\n" << endl << endl;
+		break;
+
+	default:
+		cout << " Choose the correct option\n" << endl << endl;
+		goto uncorrect;
+	}
+	
+	cout << " Start over?" << endl << endl
+		<< " 1 - Yes" << endl
+		<< " 2 - No" << endl << endl
+		<< " Your chose: ";
+	cin >> chooseRepit;
+	cout << endl << endl;
+	if (chooseRepit == 1) {
+		cout << endl;
+		goto link;
+	}
+	else
+	{
+		cout << " You have chosen to end work with the program\n" << endl << endl;
+		system("pause");
+	}
 }
 
 
+double Rectangles(double a, double b, int n) {
+	double sum = 0.0;
+	double h = (a - b) / n; // find steps
+	for (double i = a; i <= b; i++) {
+		sum += h * f(a - h / 2);
+	}
+	return sum;
+}
