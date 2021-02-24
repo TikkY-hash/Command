@@ -5,9 +5,9 @@
 using namespace std;
 
 
-double Rectangles(double a,double b,int n);
-double Trapezium(double a, double b, int c);
-double Simpson(double a, double b, int c);
+double twoPoint(double a,double b,int n);
+double threePoint(double a, double b, int c);
+double second(double a, double b, int c);
 
 
 int main()
@@ -16,19 +16,12 @@ int main()
 	int userNumber = 0;
 	do {
 		int  choosemethod;
-		double a, b, sum;
-		int n;
-		cout << " Enter your start data of functions = ";
-		cin >> a;
-		cout << "  Enter your end data of functions = ";
-		cin >> b;
-		cout << " Enter your coefficient = ";
-		cin >> n;
+		
 
-		cout << "	IntegrationMethods \n" << endl;
-		cout << " 1) Method of Rectangles \n";
-		cout << " 2) Method of Trapezium  \n";
-		cout << " 3) Method of Simpson \n" << endl;
+	
+		cout << " 1) The first derivative by two-point methods \n";
+		cout << " 2) The first derivative by three-point methods \n";
+		cout << " 3) Finding the second derivative \n" << endl;
 
 	uncorrect: cout << " Your chose: ";
 		cin >> choosemethod;
@@ -37,17 +30,17 @@ int main()
 		switch (choosemethod) {
 
 		case 1:
-			cout << "	Method of Rectangles\n" << endl << endl;
-			sum = Rectangles(a, b, n);
-			cout << sum << endl;
+			cout << " First derivative by two-point methods \n" << endl << endl;
+			
+		
 			break;
 
 		case 2:
-			cout << "	Method of Trapezium\n" << endl << endl;
+			cout << " First derivative by three-point methods \n" << endl << endl;
 			break;
 
 		case 3:
-			cout << "	Method of Simpson\n" << endl << endl;
+			cout << " The second derivative\n" << endl << endl;
 			break;
 
 		default:
@@ -65,11 +58,3 @@ int main()
 }
 
 
-double Rectangles(double a, double b, int n) {
-	double sum = 0.0;
-	double h = (a - b) / n; // find steps
-	for (double i = a; i <= b; i++) {
-		sum += h * f(a - h / 2);
-	}
-	return sum;
-}
