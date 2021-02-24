@@ -1,11 +1,11 @@
 ﻿#include <iostream>
 #include <cmath>
-#define f(x) exp(-x*-x)
+#define f(y) y*y
 
 using namespace std;
 
 
-double twoPoint(double a,double b,int n);
+void twoPoint(double x,double y,double h);
 double threePoint(double a, double b, int c);
 double second(double a, double b, int c);
 
@@ -16,7 +16,14 @@ int main()
 	int userNumber = 0;
 	do {
 		int  choosemethod;
+		double x, h,y;
 		
+		cout << "Enter your x ";
+		cin >> x;
+		cout << "Enter your y ";
+		cin >> y;
+		cout << "Enter your step ";
+		cin >> h;
 
 	
 		cout << " 1) The first derivative by two-point methods \n";
@@ -31,7 +38,7 @@ int main()
 
 		case 1:
 			cout << " First derivative by two-point methods \n" << endl << endl;
-			
+			twoPoint(x, y, h);
 		
 			break;
 
@@ -56,5 +63,21 @@ int main()
 		cout << endl << endl;
 	} while (userNumber == 1);
 }
+
+void twoPoint(double x, double y, double h) {
+	double resultFirstMethod = 0.0, resultSecondMethod = 0.0, resultThirdMethod = 0.0;
+
+
+	
+	resultFirstMethod = (f(x + h) - y * x) / h;
+	resultSecondMethod = (y * x) - f(x - h) / h;
+	resultThirdMethod = (f(x + h) - f(x - h)) / (2 * h);
+
+	cout << "First method = " << resultFirstMethod << endl;
+	cout << "Second method = " << resultSecondMethod << endl;
+	cout << "Third method = " << resultThirdMethod << endl;
+
+}
+
 
 
