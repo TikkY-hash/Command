@@ -1,13 +1,13 @@
 ﻿#include <iostream>
 #include <cmath>
-#define f(y) y*y
+#define f(y) y*y 
 
 using namespace std;
 
 
-void twoPoint(double x,double y,double h);
-double threePoint(double a, double b, int c);
-double second(double a, double b, int c);
+void twoPoint(double x, double y, double h);
+void threePoint(double x, double y, double h);
+void second(double x, double y, double h);
 
 
 int main()
@@ -16,8 +16,8 @@ int main()
 	int userNumber = 0;
 	do {
 		int  choosemethod;
-		double x, h,y;
-		
+		double x, h, y;
+
 		cout << "Enter your x ";
 		cin >> x;
 		cout << "Enter your y ";
@@ -25,7 +25,7 @@ int main()
 		cout << "Enter your step ";
 		cin >> h;
 
-	
+
 		cout << " 1) The first derivative by two-point methods \n";
 		cout << " 2) The first derivative by three-point methods \n";
 		cout << " 3) Finding the second derivative \n" << endl;
@@ -39,15 +39,19 @@ int main()
 		case 1:
 			cout << " First derivative by two-point methods \n" << endl << endl;
 			twoPoint(x, y, h);
-		
+
 			break;
 
 		case 2:
 			cout << " First derivative by three-point methods \n" << endl << endl;
+			threePoint(x, y, h);
+
 			break;
 
 		case 3:
 			cout << " The second derivative\n" << endl << endl;
+			second(x, y, h);
+
 			break;
 
 		default:
@@ -64,11 +68,10 @@ int main()
 	} while (userNumber == 1);
 }
 
+//First derivative by two-point methods
 void twoPoint(double x, double y, double h) {
 	double resultFirstMethod = 0.0, resultSecondMethod = 0.0, resultThirdMethod = 0.0;
 
-
-	
 	resultFirstMethod = (f(x + h) - y * x) / h;
 	resultSecondMethod = (y * x) - f(x - h) / h;
 	resultThirdMethod = (f(x + h) - f(x - h)) / (2 * h);
@@ -78,6 +81,26 @@ void twoPoint(double x, double y, double h) {
 	cout << "Third method = " << resultThirdMethod << endl;
 
 }
+//First derivative by three-point methods
+void threePoint(double x, double y, double h) {
+	double rez1 = 0.0, rez2 = 0.0, rez3 = 0.0;
 
+	rez1 = (1 / (2 * h)) * (-3 * f(x - h) + 4 * f(x) - f(x + h));
+	rez2 = (1 / (2 * h)) * (f(x - h) + 0 * f(x) + f(x + h));
+	rez3 = (1 / (2 * h)) * (f(x - h) - 4 * f(x) + 3 * f(x + h));
+
+	cout << "1 Method = " << rez1 << endl;
+	cout << "2 Method = " << rez2 << endl;
+	cout << "2 Method = " << rez3 << endl;
+
+}
+//The second derivative
+void second(double x, double y, double h) {
+	double rez = 0.0;
+
+	rez = (f(x + h) - 2 * f(x) + f(x - h)) / (h * h);
+
+	cout << "Result = " << rez;
+}
 
 
