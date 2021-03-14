@@ -5,9 +5,10 @@
 using namespace std;
 
 
-void twoPoint(double x, double y, double h);
+void twoPoint(double x, double h);
 void threePoint(double x, double y, double h);
 void second(double x, double y, double h);
+int tPy(double pm);
 
 
 int main()
@@ -38,7 +39,7 @@ int main()
 
 		case 1:
 			cout << " First derivative by two-point methods \n" << endl << endl;
-			twoPoint(x, y, h);
+			twoPoint(x, h);
 
 			break;
 
@@ -69,17 +70,24 @@ int main()
 }
 
 //First derivative by two-point methods
-void twoPoint(double x, double y, double h) {
-	double resultFirstMethod = 0.0, resultSecondMethod = 0.0, resultThirdMethod = 0.0;
-
-	resultFirstMethod = (f(x + h) - y * x) / h;
-	resultSecondMethod = (y * x) - f(x - h) / h;
-	resultThirdMethod = (f(x + h) - f(x - h)) / (2 * h);
-
+void twoPoint(double x, double h) {
+	double resultFirstMethod = 0.0, resultSecondMethod = 0.0, resultThirdMethod = 0.0, plus, minus, xxx, p, m;
+	p = x + h;
+	plus = tPy(p);
+	m = x - h;
+	minus = tPy(m);
+	xxx = tPy(x);
+	resultFirstMethod = (plus - xxx) / h;
+	resultSecondMethod = (xxx - minus) / h;
+	resultThirdMethod = (plus - minus) / (2 * h);
 	cout << "First method = " << resultFirstMethod << endl;
 	cout << "Second method = " << resultSecondMethod << endl;
 	cout << "Third method = " << resultThirdMethod << endl;
-
+}
+int tPy(double pm) {
+	double y;
+	y = pm * pm;
+	return y;
 }
 //First derivative by three-point methods
 void threePoint(double x, double y, double h) {
