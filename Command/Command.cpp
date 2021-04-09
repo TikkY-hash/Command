@@ -69,46 +69,5 @@ int main()
 	} while (userNumber == 1);
 }
 
-//First derivative by two-point methods
-void twoPoint(double x, double h) {
-	double resultFirstMethod = 0.0, resultSecondMethod = 0.0, resultThirdMethod = 0.0, plus, minus, xxx, p, m;
-	p = x + h;
-	plus = tPy(p);
-	m = x - h;
-	minus = tPy(m);
-	xxx = tPy(x);
-	resultFirstMethod = (plus - xxx) / h;
-	resultSecondMethod = (xxx - minus) / h;
-	resultThirdMethod = (plus - minus) / (2 * h);
-	cout << "First method = " << resultFirstMethod << endl;
-	cout << "Second method = " << resultSecondMethod << endl;
-	cout << "Third method = " << resultThirdMethod << endl;
-}
-int tPy(double pm) {
-	double y;
-	y = pm * pm;
-	return y;
-}
-//First derivative by three-point methods
-void threePoint(double x, double y, double h) {
-	double rez1 = 0.0, rez2 = 0.0, rez3 = 0.0;
-
-	rez1 = (1 / (2 * h)) * (-3 * f(x - h) + 4 * f(x) - f(x + h));
-	rez2 = (1 / (2 * h)) * (f(x - h) + 0 * f(x) + f(x + h));
-	rez3 = (1 / (2 * h)) * (f(x - h) - 4 * f(x) + 3 * f(x + h));
-
-	cout << "1 Method = " << rez1 << endl;
-	cout << "2 Method = " << rez2 << endl;
-	cout << "2 Method = " << rez3 << endl;
-
-}
-//The second derivative
-void second(double x, double y, double h) {
-	double rez = 0.0;
-
-	rez = (f(x + h) - 2 * f(x) + f(x - h)) / (h * h);
-
-	cout << "Result = " << rez;
-}
 
 
