@@ -68,25 +68,13 @@ int main()
 		cout << endl << endl;
 	} while (userNumber == 1);
 }
+//The second derivative
+void second(double x, double y, double h) {
+	double rez = 0.0;
 
-//First derivative by two-point methods
-void twoPoint(double x, double h) {
-	double resultFirstMethod = 0.0, resultSecondMethod = 0.0, resultThirdMethod = 0.0, plus, minus, xxx, p, m;
-	p = x + h;
-	plus = tPy(p);
-	m = x - h;
-	minus = tPy(m);
-	xxx = tPy(x);
-	resultFirstMethod = (plus - xxx) / h;
-	resultSecondMethod = (xxx - minus) / h;
-	resultThirdMethod = (plus - minus) / (2 * h);
-	cout << "First method = " << resultFirstMethod << endl;
-	cout << "Second method = " << resultSecondMethod << endl;
-	cout << "Third method = " << resultThirdMethod << endl;
+	rez = (f(x + h) - 2 * f(x) + f(x - h)) / (h * h);
+
+	cout << "Result = " << rez;
 }
-int tPy(double pm) {
-	double y;
-	y = pm * pm;
-	return y;
-}
+
 
