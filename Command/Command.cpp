@@ -1,13 +1,11 @@
 ﻿#include <iostream>
 #include <cmath>
-#define f(y) y*y 
 
 using namespace std;
 
-
-void twoPoint(double x, double h);
-void threePoint(double x, double y, double h);
-void second(double x, double y, double h);
+//void twoPoint(double x, double h);
+void threePoint(double x, double h);
+//void second(double x, double y, double h);
 int tPy(double pm);
 
 
@@ -39,19 +37,19 @@ int main()
 
 		case 1:
 			cout << " First derivative by two-point methods \n" << endl << endl;
-			twoPoint(x, h);
+			//twoPoint(x, h);
 
 			break;
 
 		case 2:
 			cout << " First derivative by three-point methods \n" << endl << endl;
-			threePoint(x, y, h);
+			threePoint(x, h);
 
 			break;
 
 		case 3:
 			cout << " The second derivative\n" << endl << endl;
-			second(x, y, h);
+			//second(x, y, h);
 
 			break;
 
@@ -70,16 +68,29 @@ int main()
 }
 
 //First derivative by three-point methods
-void threePoint(double x, double y, double h) {
-	double rez1 = 0.0, rez2 = 0.0, rez3 = 0.0;
+void threePoint(double x, double h) {
+	double rez1 = 0.0, rez2 = 0.0, rez3 = 0.0, minus, plus, m, p;
+	m = x - h;
+	p = x + h;
 
-	rez1 = (1 / (2 * h)) * (-3 * f(x - h) + 4 * f(x) - f(x + h));
-	rez2 = (1 / (2 * h)) * (f(x - h) + 0 * f(x) + f(x + h));
-	rez3 = (1 / (2 * h)) * (f(x - h) - 4 * f(x) + 3 * f(x + h));
+	minus = tPy(m);
+	plus = tPy(p);
+	x = tPy(x);
+
+
+	rez1 = (1 / (2 * h)) * (-3 * minus + 4 * x - plus);
+	rez2 = (1 / (2 * h)) * (minus + 0 * x + plus);
+	rez3 = (1 / (2 * h)) * (minus - 4 * x + 3 * plus);
 
 	cout << "1 Method = " << rez1 << endl;
 	cout << "2 Method = " << rez2 << endl;
 	cout << "2 Method = " << rez3 << endl;
 
+}
+
+int tPy(double pm) {
+	double y;
+	y = pm * pm;
+	return y;
 }
 
