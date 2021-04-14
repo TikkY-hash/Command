@@ -79,7 +79,7 @@ void threePoint(double x, double h) {
 
 
 	rez1 = (1 / (2 * h)) * (-3 * minus + 4 * x - plus);
-	rez2 = (1 / (2 * h)) * (minus + 0 * x + plus);
+	rez2 = (1 / (2 * h)) * (-minus + 0 * x + plus);
 	rez3 = (1 / (2 * h)) * (minus - 4 * x + 3 * plus);
 
 	cout << "1 Method = " << rez1 << endl;
