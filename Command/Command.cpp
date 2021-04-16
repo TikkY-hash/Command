@@ -51,7 +51,7 @@ int main()
 
 		case 3:
 			cout << " The second derivative\n" << endl << endl;
-			second(x, y, h);
+			second(x,h);
 
 			break;
 
@@ -103,10 +103,10 @@ void threePoint(double x, double y, double h) {
 
 }
 //The second derivative
-void second(double x, double y, double h) {
+void second(double x, double h) {
 	double rez = 0.0;
 
-	rez = (f(x + h) - 2 * f(x) + f(x - h)) / (h * h);
+	rez = (tPy(x + h) - 2 * tPy(x) + tPy(x - h)) / (h * h);
 
 	cout << "Result = " << rez;
 }
