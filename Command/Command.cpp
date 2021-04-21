@@ -1,11 +1,12 @@
 ﻿#include <iostream>
 #include <cmath>
+#include <time.h>
 
 using namespace std;
 
-//void twoPoint(double x, double h);
+void twoPoint(double x, double h);
 void threePoint(double x, double h);
-//void second(double x, double y, double h);
+void second(double x, double h);
 int tPy(double pm);
 
 
@@ -13,15 +14,14 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 	int userNumber = 0;
+	double start, end;
 	do {
 		int  choosemethod;
-		double x, h, y;
+		double x, h;
 
-		cout << "Enter your x ";
+		cout << " Enter your x ";
 		cin >> x;
-		cout << "Enter your y ";
-		cin >> y;
-		cout << "Enter your step ";
+		cout << " Enter your step ";
 		cin >> h;
 
 
@@ -37,20 +37,29 @@ int main()
 
 		case 1:
 			cout << " First derivative by two-point methods \n" << endl << endl;
-			//twoPoint(x, h);
+			start = clock();
+			twoPoint(x, h);
+			end = clock();
 
+			cout << " The function finished executing in: " << end - start << " milliseconds " << endl;
 			break;
 
 		case 2:
 			cout << " First derivative by three-point methods \n" << endl << endl;
+			start = clock();
 			threePoint(x, h);
+			end = clock();
 
+			cout << " The function finished executing in: " << end - start << " milliseconds " << endl;
 			break;
 
 		case 3:
 			cout << " The second derivative\n" << endl << endl;
-			//second(x, y, h);
+			start = clock();
+			second(x, h);
+			end = clock();
 
+			cout << " The function finished executing in: " << end - start << " milliseconds " << endl;
 			break;
 
 		default:
@@ -65,6 +74,26 @@ int main()
 		cin >> userNumber;
 		cout << endl << endl;
 	} while (userNumber == 1);
+}
+
+void twoPoint(double x, double h) {
+	double resultFirstMethod = 0.0, resultSecondMethod = 0.0, resultThirdMethod = 0.0, plus, minus, xxx, p, m;
+	p = x + h;
+	plus = tPy(p);
+	m = x - h;
+	minus = tPy(m);
+	xxx = tPy(x);
+	resultFirstMethod = (plus - xxx) / h;
+	resultSecondMethod = (xxx - minus) / h;
+	resultThirdMethod = (plus - minus) / (2 * h);
+	cout << " First method = " << resultFirstMethod << endl;
+	cout << " Second method = " << resultSecondMethod << endl;
+	cout << " Third method = " << resultThirdMethod << endl;
+}
+int tPy(double pm) {
+	double y;
+	y = pm * pm;
+	return y;
 }
 
 //First derivative by three-point methods
@@ -82,15 +111,19 @@ void threePoint(double x, double h) {
 	rez2 = (1 / (2 * h)) * (-minus + 0 * x + plus);
 	rez3 = (1 / (2 * h)) * (minus - 4 * x + 3 * plus);
 
-	cout << "1 Method = " << rez1 << endl;
-	cout << "2 Method = " << rez2 << endl;
-	cout << "2 Method = " << rez3 << endl;
-
+	cout << " 1 Method = " << rez1 << endl;
+	cout << " 2 Method = " << rez2 << endl;
+	cout << " 2 Method = " << rez3 << endl;
 }
 
-int tPy(double pm) {
-	double y;
-	y = pm * pm;
-	return y;
-}
 
+//The second derivative
+void second(double x, double h) {
+	double  rez, first, second, third;
+	rez = 0.0;
+	first = tPy(x + h);
+	second = tPy(x - h);
+	third = tPy(x);
+	rez = (first - 2 * third + second) / (h * h);
+	cout << " rez " << rez << endl;
+}
