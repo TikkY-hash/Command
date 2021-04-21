@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <cmath>
-#define f(y) y*y 
+#include <sys/time.h>
 
 using namespace std;
 
@@ -39,20 +39,30 @@ int main()
 
 		case 1:
 			cout << " First derivative by two-point methods \n" << endl << endl;
+			
+			int start = clock();
 			twoPoint(x, h);
+			int end = clock();
 
+			cout << "The function completed its execution in " << start - end;
 			break;
 
 		case 2:
 			cout << " First derivative by three-point methods \n" << endl << endl;
+			int start = clock();
 			threePoint(x, y, h);
+			int end = clock();
 
+			cout << "The function completed its execution in " << start - end;
 			break;
 
 		case 3:
 			cout << " The second derivative\n" << endl << endl;
+			int start = clock();
 			second(x,h);
+			int end = clock();
 
+			cout << "The function completed its execution in " << start - end;
 			break;
 
 		default:
